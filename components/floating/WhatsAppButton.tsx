@@ -28,10 +28,10 @@ export function WhatsAppButton() {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 h-12 px-5 bg-[#25D366] text-white rounded-full flex items-center justify-center gap-2 shadow-2xl z-50 hover:bg-[#20ba5a] transition-colors duration-300 font-montserrat font-medium text-xs md:text-sm tracking-wider uppercase"
+      className="fixed bottom-6 right-6 h-12 w-12 md:w-auto md:px-5 bg-[#25D366] text-white rounded-full flex items-center justify-center gap-2 shadow-2xl z-50 hover:bg-[#20ba5a] transition-colors duration-300 font-montserrat font-medium text-xs md:text-sm tracking-wider uppercase"
     >
-      <FaWhatsapp className="w-5 h-5 fill-white text-white" />
-      <span>Chat on WhatsApp</span>
+      <FaWhatsapp className="w-5 h-5 fill-white text-white flex-shrink-0" />
+      <span className="hidden md:inline">Chat on WhatsApp</span>
     </motion.a>
   );
 }

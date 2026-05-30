@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #111111;
+  --color-gold: #D4AF37;
+  --color-rosegold: #C48A6A;
+  --color-bg-luxury: #FAF7F2;
+  --color-text-luxury: #333333;
+  --color-card-luxury: #FFFFFF;
+
+  --font-playfair: var(--font-playfair);
+  --font-cormorant: var(--font-cormorant);
+  --font-poppins: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+}
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #333333;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Selection background */
+::selection {
+  background-color: #D4AF37;
+  color: #111111;
+}
+
+/* Premium Utilities */
+.glassmorphism {
+  background: rgba(250, 247, 242, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glassmorphism-dark {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #C48A6A 50%, #D4AF37 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #FAF7F2 50%, #C48A6A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(212, 175, 55, 0.3);
+  color: transparent;
+}
+
+/* Custom styling for sleek animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Smooth scrolling transition */
+html {
+  scroll-behavior: smooth;
+}

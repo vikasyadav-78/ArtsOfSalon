@@ -1,10 +1,56 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Phone, Calendar, ArrowDown } from "lucide-react";
 import Button from "../ui/Button";
 
+const headlines = [
+  "Where Style Meets Perfection",
+  "Crafting Elite Hair Artistry",
+  "Indulge In Absolute Luxury"
+];
+
 export function Hero() {
+  const [currentText, setCurrentText] = useState("");
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const fullText = headlines[headlineIndex];
+
+    const handleType = () => {
+      if (!isDeleting) {
+        // Typing characters
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        
+        // If typing is complete, wait and start backspacing
+        if (currentText === fullText) {
+          setTypingSpeed(2500); // Hold for 2.5s
+          setIsDeleting(true);
+        } else {
+          setTypingSpeed(80 + Math.random() * 40); // Fast realistic typing
+        }
+      } else {
+        // Backspacing
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        
+        // If backspacing is complete, move to next headline
+        if (currentText === "") {
+          setIsDeleting(false);
+          setHeadlineIndex((prev) => (prev + 1) % headlines.length);
+          setTypingSpeed(400); // Brief pause before typing next
+        } else {
+          setTypingSpeed(40); // Fast backspacing
+        }
+      }
+    };
+
+    const timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, headlineIndex, typingSpeed]);
+
   const handleScrollTo = (id: string) => {
     const target = document.querySelector(id);
     if (target) {
@@ -31,7 +77,7 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-10 w-[300px] h-[300px] bg-[#C48A6A]/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Hero Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center w-full">
         
         {/* Rating Block */}
         <motion.div
@@ -54,16 +100,13 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-playfair font-black text-4xl sm:text-6xl md:text-8xl tracking-wider text-white uppercase leading-none mb-6"
-        >
-          Where Style <br className="sm:hidden" />
-          <span className="gold-text-gradient">Meets Perfection</span>
-        </motion.h1>
+        {/* Dynamic Typewriter Headline */}
+        <div className="min-h-[130px] sm:min-h-[190px] md:min-h-[220px] flex items-center justify-center mb-6 w-full">
+          <h1 className="font-playfair font-black text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider text-white uppercase leading-none text-center">
+            <span className="gold-text-gradient">{currentText}</span>
+            <span className="animate-[pulse_1s_infinite] text-[#D4AF37] ml-1 font-light font-sans">|</span>
+          </h1>
+        </div>
 
         {/* Subheadline */}
         <motion.p

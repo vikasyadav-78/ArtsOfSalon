@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Image from "next/image";
 import { Testimonial } from "@/types";
 
 const testimonials: Testimonial[] = [
@@ -11,21 +12,21 @@ const testimonials: Testimonial[] = [
     review: "Stunning customized party makeup and elegant hair design tailored specifically to highlight natural beauty. Verified 5.0 Star Rating.",
     rating: 5,
     date: "Official Showcase",
-    avatarUrl: "/images/ig1.png",
+    avatarUrl: "/images/ig1.webp",
   },
   {
     name: "Bridal Airbrush Prep",
     review: "Exquisite HD Bridal makeup base and traditional hair styling tailored for special wedding moments. Verified 5.0 Star Rating.",
     rating: 5,
     date: "Official Showcase",
-    avatarUrl: "/images/ig2.jpg",
+    avatarUrl: "/images/ig2.webp",
   },
   {
     name: "Ethnic Style Styling",
     review: "Elegant ethnic hair design, precision cuts, and professional skincare custom consultations. Verified 5.0 Star Rating.",
     rating: 5,
     date: "Official Showcase",
-    avatarUrl: "/images/ig3.jpg",
+    avatarUrl: "/images/ig3.webp",
   },
 ];
 
@@ -118,11 +119,15 @@ export function Testimonials() {
 
               {/* Author Footer */}
               <div className="flex items-center gap-4 mt-4 border-t border-white/5 pt-6">
-                <img
-                  src={testimonials[currentIndex].avatarUrl}
-                  alt={testimonials[currentIndex].name}
-                  className="w-12 h-12 rounded-full border-2 border-[#D4AF37]/50 object-cover"
-                />
+                <div className="relative w-12 h-12 flex-shrink-0 rounded-full border-2 border-[#D4AF37]/50 overflow-hidden">
+                  <Image
+                    src={testimonials[currentIndex].avatarUrl || "/images/ig1.webp"}
+                    alt={testimonials[currentIndex].name}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex flex-col">
                   <h4 className="font-playfair text-white text-base font-bold">
                     {testimonials[currentIndex].name}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { GalleryItem } from "@/types";
 
 const galleryData: GalleryItem[] = [
@@ -175,10 +176,14 @@ export function Gallery() {
                   onClick={() => openLightbox(item.id)}
                   className={`group relative overflow-hidden bg-[#111111] cursor-pointer shadow-lg ${gridSpan}`}
                 >
-                  {/* Photo container */}
-                  <div
-                    className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                    style={{ backgroundImage: `url('${item.url}')` }}
+                  {/* Photo container via optimized Next.js Image */}
+                  <Image
+                    src={item.url}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
 
                   {/* Glassmorphic Luxury Overlay */}
@@ -249,17 +254,20 @@ export function Gallery() {
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ duration: 0.4 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative max-w-5xl max-h-[80vh] w-full flex flex-col items-center justify-center cursor-default bg-[#111111]/30 border border-white/5 p-2 shadow-2xl"
+                className="relative max-w-5xl max-h-[70vh] w-full aspect-video flex flex-col items-center justify-center cursor-default bg-[#111111]/30 border border-white/5 p-2 shadow-2xl overflow-hidden"
               >
                 {/* Photo */}
-                <img
+                <Image
                   src={galleryData[lightboxIndex].url}
                   alt={galleryData[lightboxIndex].alt}
-                  className="max-w-full max-h-[70vh] object-contain border border-[#D4AF37]/20"
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 85vw"
+                  priority
+                  className="object-contain border border-[#D4AF37]/20"
                 />
 
                 {/* Lightbox Caption Footer */}
-                <div className="w-full text-center mt-6">
+                <div className="absolute bottom-4 left-0 right-0 text-center bg-black/60 backdrop-blur-sm py-3 z-20">
                   <span className="font-montserrat text-[10px] tracking-widest text-[#D4AF37] uppercase font-bold">
                     {galleryData[lightboxIndex].category}
                   </span>

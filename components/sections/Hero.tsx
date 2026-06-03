@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Phone, Calendar, ArrowDown } from "lucide-react";
+import Image from "next/image";
 import Button from "../ui/Button";
 
 const headlines = [
@@ -64,12 +65,17 @@ export function Hero() {
       className="relative min-h-screen w-full flex items-center justify-center bg-[#111111] overflow-hidden pt-24 pb-28"
     >
       {/* Premium Luxury Salon Background with dark overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 animate-[pulse_10s_ease-in-out_infinite]"
-        style={{
-          backgroundImage: "url('/images/premium_interior.png')",
-        }}
-      />
+      <div className="absolute inset-0 scale-105 animate-[pulse_10s_ease-in-out_infinite]">
+        <Image
+          src="/images/premium_interior.webp"
+          alt="Arts of Scissors Unisex Salon Interior"
+          fill
+          sizes="100vw"
+          priority
+          quality={80}
+          className="object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/70 to-[#111111]/90" />
       
       {/* Decorative Golden Ambient Glare */}

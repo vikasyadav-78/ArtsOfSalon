@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 const Instagram = ({ className }: { className?: string }) => (
   <svg
@@ -22,7 +23,7 @@ const Instagram = ({ className }: { className?: string }) => (
 const instagramPosts = [
   {
     id: 1,
-    url: "/images/ig1.png",
+    url: "/images/ig1.webp",
     postUrl: "https://www.instagram.com/p/CkkClBLJa_P/?img_index=1",
     likes: 489,
     comments: 34,
@@ -30,7 +31,7 @@ const instagramPosts = [
   },
   {
     id: 2,
-    url: "/images/ig2.jpg",
+    url: "/images/ig2.webp",
     postUrl: "https://www.instagram.com/p/CkkVZ7HpMgU/",
     likes: 542,
     comments: 41,
@@ -38,7 +39,7 @@ const instagramPosts = [
   },
   {
     id: 3,
-    url: "/images/ig3.jpg",
+    url: "/images/ig3.webp",
     postUrl: "https://www.instagram.com/p/CiRldmotFwN/?img_index=1",
     likes: 415,
     comments: 22,
@@ -95,9 +96,13 @@ export function InstagramSection() {
               className="group relative aspect-square overflow-hidden bg-[#111111] shadow-md border border-[#D4AF37]/10"
             >
               {/* Image */}
-              <div
-                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-108"
-                style={{ backgroundImage: `url('${post.url}')` }}
+              <Image
+                src={post.url}
+                alt={post.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                className="object-cover transition-transform duration-700 group-hover:scale-108"
               />
 
               {/* Hover overlay with live counts */}

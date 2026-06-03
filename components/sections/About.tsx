@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Award, UserCheck, ShieldCheck, Sparkles, HeartHandshake } from "lucide-react";
 
 const highlights = [
@@ -38,7 +39,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
           {/* Left Column: Premium Framed Images */}
-          <div className="lg:col-span-6 relative flex items-center justify-center">
+          <div className="lg:col-span-6 relative flex items-center justify-center w-full min-h-[400px] md:min-h-[500px]">
             
             {/* Ambient Background Spot */}
             <div className="absolute top-10 left-10 w-[250px] h-[250px] bg-[#D4AF37]/5 rounded-full blur-[80px] pointer-events-none" />
@@ -51,11 +52,12 @@ export function About() {
               transition={{ duration: 0.8 }}
               className="relative w-full max-w-md aspect-[3/4] overflow-hidden z-10 shadow-2xl gold-border-glow"
             >
-              <div 
-                className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
-                style={{
-                  backgroundImage: "url('/images/img11.jpg')",
-                }}
+              <Image 
+                src="/images/img11.webp" 
+                alt="Arts Of Scissors Unisex Salon stylings"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/30 to-transparent" />
             </motion.div>

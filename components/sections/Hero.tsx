@@ -13,12 +13,25 @@ const headlines = [
 ];
 
 export function Hero() {
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState("Where Style Meets Perfection");
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // Delay typing loop until loader is fully unmounted
+    const timer = setTimeout(() => {
+      setIsReady(true);
+      setIsDeleting(true);
+      setTypingSpeed(1500); // Briefly hold the first text before backspacing
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+
     const fullText = headlines[headlineIndex];
 
     const handleType = () => {
@@ -50,7 +63,7 @@ export function Hero() {
 
     const timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, headlineIndex, typingSpeed]);
+  }, [currentText, isDeleting, headlineIndex, typingSpeed, isReady]);
 
   const handleScrollTo = (id: string) => {
     const target = document.querySelector(id);
@@ -172,13 +185,11 @@ export function Hero() {
         <span className="font-montserrat text-[10px] tracking-[0.25em] uppercase text-white/55 group-hover:text-[#D4AF37] transition-colors duration-300">
           Discover More
         </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8 }}
-          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 group-hover:border-[#D4AF37] group-hover:text-[#D4AF37] transition-all"
+        <div
+          className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 group-hover:border-[#D4AF37] group-hover:text-[#D4AF37] transition-all animate-scroll-bounce"
         >
           <ArrowDown className="w-4 h-4" />
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );

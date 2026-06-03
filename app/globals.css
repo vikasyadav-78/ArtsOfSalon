@@ -12,6 +12,19 @@
   --font-cormorant: var(--font-cormorant);
   --font-poppins: var(--font-poppins);
   --font-montserrat: var(--font-montserrat);
+
+  --animate-shimmer-bar: shimmer-bar 1.5s ease-in-out infinite;
+  --animate-scroll-bounce: scroll-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer-bar {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
 }
 
 :root {

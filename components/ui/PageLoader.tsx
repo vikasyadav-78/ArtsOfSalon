@@ -8,10 +8,10 @@ export function PageLoader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Hide the loader after 2 seconds to match original animation duration
+    // Hide the loader after 1 second to improve PageSpeed score
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 

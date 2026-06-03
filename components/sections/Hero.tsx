@@ -25,7 +25,7 @@ export function Hero() {
       setIsReady(true);
       setIsDeleting(true);
       setTypingSpeed(1500); // Briefly hold the first text before backspacing
-    }, 2500);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 

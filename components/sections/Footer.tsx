@@ -72,6 +72,7 @@ export function Footer() {
               href="https://www.instagram.com/artsofscissor/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
               className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300 bg-white/5"
             >
               <Instagram className="w-4 h-4" />
@@ -80,6 +81,7 @@ export function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Facebook"
               className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/80 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300 bg-white/5"
             >
               <Facebook className="w-4 h-4" />

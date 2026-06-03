@@ -7,6 +7,7 @@ export function CallButton() {
   return (
     <motion.a
       href="tel:9680905608"
+      aria-label="Call 9680905608"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.08 }}

@@ -114,6 +114,7 @@ export function Navbar() {
                 href="https://www.instagram.com/artsofscissor/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className={`w-8 h-8 rounded-full border flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300 ${
                   isScrolled 
                     ? "border-[#111111]/10 text-[#111111]" 

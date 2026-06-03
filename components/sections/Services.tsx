@@ -188,10 +188,12 @@ export function Services() {
                 key={service.name}
                 layout
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
                 exit={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileHover={{ y: -8, scale: 1.015, transition: { duration: 0.3, ease: "easeOut" } }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="bg-white group p-6 shadow-[0_8px_30px_rgb(0,0,0,0.01)] border border-[#D4AF37]/10 hover:border-[#D4AF37]/50 hover:shadow-[0_15px_35px_rgba(212,175,55,0.08)] transition-all duration-500 relative flex flex-col justify-between"
+                className="bg-white group p-6 shadow-[0_8px_30px_rgb(0,0,0,0.01)] border border-[#D4AF37]/10 hover:border-[#D4AF37]/50 hover:shadow-[0_15px_35px_rgba(212,175,55,0.08)] transition-[colors,border-color,box-shadow] duration-500 relative flex flex-col justify-between cursor-pointer"
               >
                 <div className="absolute top-0 left-0 w-[4px] h-0 bg-[#D4AF37] group-hover:h-full transition-all duration-500" />
                 

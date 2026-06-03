@@ -75,8 +75,9 @@ export function WhyChooseUs() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:border-[#D4AF37]/50 hover:bg-white/[0.07] hover:shadow-[0_15px_30px_rgba(212,175,55,0.05)] transition-all duration-500 flex flex-col gap-5"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:border-[#D4AF37]/50 hover:bg-white/[0.07] hover:shadow-[0_15px_30px_rgba(212,175,55,0.05)] transition-[colors,border-color,box-shadow] duration-500 flex flex-col gap-5 cursor-pointer"
               >
                 {/* Icon Container */}
                 <div className="w-12 h-12 rounded-none border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] bg-[#111111]">

@@ -169,12 +169,14 @@ export function Gallery() {
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  whileHover={{ y: -8, scale: 1.015, transition: { duration: 0.3, ease: "easeOut" } }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
                   onClick={() => openLightbox(item.id)}
-                  className={`group relative overflow-hidden bg-[#111111] cursor-pointer shadow-lg ${gridSpan}`}
+                  className={`group relative overflow-hidden bg-[#111111] cursor-pointer shadow-lg transition-[box-shadow] duration-500 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] ${gridSpan}`}
                 >
                   {/* Photo container via optimized Next.js Image */}
                   <Image

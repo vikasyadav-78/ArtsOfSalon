@@ -92,8 +92,9 @@ export function InstagramSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative aspect-square overflow-hidden bg-[#111111] shadow-md border border-[#D4AF37]/10"
+              className="group relative aspect-square overflow-hidden bg-[#111111] shadow-md border border-[#D4AF37]/10 transition-[colors,border-color,box-shadow] duration-500 hover:shadow-[0_15px_30px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]"
             >
               {/* Image */}
               <Image

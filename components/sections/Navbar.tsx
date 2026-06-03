@@ -1,7 +1,4 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { Button } from "../ui/Button";
@@ -52,11 +49,8 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 animate-slide-down ${
           isScrolled
             ? "glassmorphism py-4 shadow-lg"
             : "bg-transparent py-6"
@@ -147,101 +141,92 @@ export function Navbar() {
             <Menu className="w-6 h-6" />
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-50 lg:hidden"
-            />
+      {/* Backdrop */}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        className={`fixed inset-0 bg-black/60 z-50 lg:hidden transition-opacity duration-300 ${
+          mobileMenuOpen ? "opacity-50 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
 
-            {/* Content Drawer */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.4 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-full glassmorphism-dark text-white z-50 flex flex-col p-8 lg:hidden shadow-2xl"
+      {/* Content Drawer */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 w-80 max-w-full glassmorphism-dark text-white z-50 flex flex-col p-8 lg:hidden shadow-2xl transition-all duration-400 ease-in-out transform ${
+          mobileMenuOpen ? "translate-x-0 opacity-100 visible" : "translate-x-full opacity-0 invisible"
+        }`}
+      >
+        {/* Header inside drawer */}
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex flex-col">
+            <span className="font-playfair font-black text-lg tracking-wider text-[#D4AF37] uppercase">
+              Arts Of Scissors
+            </span>
+            <span className="font-cormorant font-medium text-[10px] tracking-[0.25em] text-[#C48A6A] uppercase text-right -mt-1">
+              Unisex Salon
+            </span>
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-white hover:text-[#D4AF37] focus:outline-none p-1 cursor-pointer"
+            aria-label="Close Menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Menu Links */}
+        <div className="flex flex-col gap-6 mb-12">
+          {menuItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleScrollTo(e, item.href)}
+              className="font-montserrat font-semibold text-sm tracking-widest text-white/95 hover:text-[#D4AF37] uppercase transition-colors duration-300 py-1"
             >
-              {/* Header inside drawer */}
-              <div className="flex items-center justify-between mb-12">
-                <div className="flex flex-col">
-                  <span className="font-playfair font-black text-lg tracking-wider text-[#D4AF37] uppercase">
-                    Arts Of Scissors
-                  </span>
-                  <span className="font-cormorant font-medium text-[10px] tracking-[0.25em] text-[#C48A6A] uppercase text-right -mt-1">
-                    Unisex Salon
-                  </span>
-                </div>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-white hover:text-[#D4AF37] focus:outline-none p-1 cursor-pointer"
-                  aria-label="Close Menu"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
+              {item.label}
+            </a>
+          ))}
+        </div>
 
-              {/* Menu Links */}
-              <div className="flex flex-col gap-6 mb-12">
-                {menuItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleScrollTo(e, item.href)}
-                    className="font-montserrat font-semibold text-sm tracking-widest text-white/95 hover:text-[#D4AF37] uppercase transition-colors duration-300 py-1"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-
-              {/* Quick links & Call */}
-              <div className="mt-auto flex flex-col gap-6">
-                <a
-                  href="tel:9680905608"
-                  className="flex items-center gap-3 font-montserrat text-sm font-semibold tracking-wider text-white hover:text-[#D4AF37] transition-colors duration-300"
-                >
-                  <div className="w-9 h-9 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
-                    <Phone className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
-                  </div>
-                  <span>9680905608</span>
-                </a>
-                <a
-                  href="https://www.instagram.com/artsofscissor/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 font-montserrat text-sm font-semibold tracking-wider text-white hover:text-[#D4AF37] transition-colors duration-300"
-                >
-                  <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center">
-                    <Instagram className="w-4 h-4 text-[#C48A6A]" />
-                  </div>
-                  <span>Follow us on Instagram</span>
-                </a>
-                <Button
-                  variant="gold"
-                  size="md"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    const target = document.querySelector("#booking");
-                    if (target) target.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="w-full text-center mt-2"
-                >
-                  Book Appointment
-                </Button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+        {/* Quick links & Call */}
+        <div className="mt-auto flex flex-col gap-6">
+          <a
+            href="tel:9680905608"
+            className="flex items-center gap-3 font-montserrat text-sm font-semibold tracking-wider text-white hover:text-[#D4AF37] transition-colors duration-300"
+          >
+            <div className="w-9 h-9 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+              <Phone className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
+            </div>
+            <span>9680905608</span>
+          </a>
+          <a
+            href="https://www.instagram.com/artsofscissor/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 font-montserrat text-sm font-semibold tracking-wider text-white hover:text-[#D4AF37] transition-colors duration-300"
+          >
+            <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center">
+              <Instagram className="w-4 h-4 text-[#C48A6A]" />
+            </div>
+            <span>Follow us on Instagram</span>
+          </a>
+          <Button
+            variant="gold"
+            size="md"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              const target = document.querySelector("#booking");
+              if (target) target.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="w-full text-center mt-2"
+          >
+            Book Appointment
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

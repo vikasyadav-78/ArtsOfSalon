@@ -42,7 +42,7 @@ export function LazySection({ children, height = "400px" }: LazySectionProps) {
   // During SSR and initial hydration, render children to match HTML and preserve SEO indexability.
   if (!isMounted) {
     return (
-      <div style={{ minHeight: height }}>
+      <div ref={ref} style={{ minHeight: height }}>
         {children}
       </div>
     );

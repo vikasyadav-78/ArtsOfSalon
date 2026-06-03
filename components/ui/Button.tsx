@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,12 +10,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
     return (
-      <motion.button
+      <button
         ref={ref}
-        whileHover={{ scale: 1.02, y: -2 }}
-        whileTap={{ scale: 0.98 }}
         className={cn(
-          "relative inline-flex items-center justify-center font-montserrat font-semibold tracking-wider uppercase transition-all duration-300 rounded-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 overflow-hidden",
+          "relative inline-flex items-center justify-center font-montserrat font-semibold tracking-wider uppercase transition-all duration-300 ease-out rounded-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 overflow-hidden hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]",
           
           // Variant styling
           variant === "primary" && 
@@ -43,12 +38,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           
           className
         )}
-        {...(props as React.ComponentPropsWithoutRef<typeof motion.button>)}
+        {...props}
       >
         <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
         {/* Subtle high-end lighting glint effect on hover */}
         <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
-      </motion.button>
+      </button>
     );
   }
 );

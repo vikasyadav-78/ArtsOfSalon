@@ -1,7 +1,4 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Star, Phone, Calendar, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Button from "../ui/Button";
@@ -99,11 +96,8 @@ export function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center w-full">
         
         {/* Rating Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center gap-2 bg-[#FAF7F2]/5 backdrop-blur-md px-4 py-2 border border-white/10 rounded-full mb-8 shadow-2xl"
+        <div
+          className="flex items-center gap-2 bg-[#FAF7F2]/5 backdrop-blur-md px-4 py-2 border border-white/10 rounded-full mb-8 shadow-2xl animate-fade-in-up"
         >
           <div className="flex items-center text-[#D4AF37]">
             {[...Array(5)].map((_, i) => (
@@ -117,7 +111,7 @@ export function Hero() {
           <span className="font-montserrat text-xs tracking-wider uppercase text-[#D4AF37] font-semibold">
             112+ Happy Reviews
           </span>
-        </motion.div>
+        </div>
 
         {/* Dynamic Typewriter Headline */}
         <div className="min-h-[130px] sm:min-h-[190px] md:min-h-[220px] flex items-center justify-center mb-6 w-full">
@@ -128,21 +122,15 @@ export function Hero() {
         </div>
 
         {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-cormorant font-medium text-lg sm:text-2xl md:text-3xl text-white/80 leading-relaxed max-w-3xl mb-12 italic"
+        <p
+          className="font-cormorant font-medium text-lg sm:text-2xl md:text-3xl text-white/80 leading-relaxed max-w-3xl mb-12 italic animate-fade-in-up [animation-delay:400ms]"
         >
           {"Experience premium hair, beauty, skin care and grooming services at Jaipur's trusted unisex salon."}
-        </motion.p>
+        </p>
 
         {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
+        <div
+          className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto animate-fade-in-up [animation-delay:600ms]"
         >
           <Button
             variant="gold"
@@ -162,7 +150,7 @@ export function Hero() {
             <Phone className="w-4 h-4 fill-current" />
             <span>Call 9680905608</span>
           </Button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Floating Animated Geometric Border Decor */}
@@ -175,12 +163,9 @@ export function Hero() {
       </div>
 
       {/* Scroll Down Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        transition={{ delay: 1, duration: 1 }}
+      <div
         onClick={() => handleScrollTo("#about")}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer group z-10"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer group z-10 animate-fade-in-scroll [animation-delay:1000ms]"
       >
         <span className="font-montserrat text-[10px] tracking-[0.25em] uppercase text-white/55 group-hover:text-[#D4AF37] transition-colors duration-300">
           Discover More
@@ -190,7 +175,7 @@ export function Hero() {
         >
           <ArrowDown className="w-4 h-4" />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
